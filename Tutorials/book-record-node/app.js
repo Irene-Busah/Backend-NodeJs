@@ -16,7 +16,7 @@ app.use('/api', bookRoute)
 
 
 // Database connection
-mongoose.connect('mongodb+srv://Irene-Busah:Greatperson45$@node-api.6mmywz5.mongodb.net/node-api?retryWrites=true&w=majority').then(() => {
+mongoose.connect('MONGODB_URL').then(() => {
     console.log('Connected to MongoDB')
     app.listen(port, () => {
         console.log(`Listening on port ${port}`)
