@@ -1,0 +1,20 @@
+{
+  "name": "qr-code-project",
+  "version": "1.0.0",
+  "description": "QR code generator",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Irene Busah",
+  "license": "ISC",
+  "dependencies": {
+    "inquirer": "^9.2.11",
+    "qr-image": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/inquirer": "^9.0.3",
+    "@types/qr-image": "^3.2.7"
+  }
+}
