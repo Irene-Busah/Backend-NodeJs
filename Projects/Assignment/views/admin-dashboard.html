@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Team Lead Dashboard</title>
+    <style>
+        /* General Styles */
+        body, h1, h2, h3, p {
+            margin: 0;
+            padding: 0;
+            font-family: 'Karla', sans-serif;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 30px;
+            text-align: right;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        section {
+            margin: 20px;
+            width: 80%;
+        }
+
+        /* Request and Feedback List Styles */
+        .requests li,
+        .feedback li
+         {
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 10px;
+            list-style-type: none;
+        }
+
+        .admin-tasks li {
+            list-style-type: none;
+        }
+
+        .requests h2,
+        .feedback h2,
+        .admin-tasks h2 {
+            padding-left: 35px;
+        }
+
+        .requests h3,
+        .feedback h3,
+        .admin-tasks h3 {
+            font-size: 1.2rem;
+        }
+
+        .feedback p {
+            font-style: italic;
+            color: #888;
+        }
+
+        .requests p,
+        .admin-tasks p {
+            margin-top: 10px;
+        }
+
+        /* Administrative Task Form Styles */
+        .admin-tasks textarea {
+            width: 80%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .admin-tasks button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .admin-tasks button:hover {
+            background-color: #555;
+        }
+
+        .pend {
+            color: rgb(243, 40, 40);
+            font-weight: 500;
+        }
+        .approve {
+            color: green;
+            font-weight: 500;
+        }
+        .title {
+            font-weight: 700;
+        }
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome, <%= user.name %></h1>
+        <a href="/logout">Logout</a>
+    </header>
+    <br>
+    <section class="requests">
+        <h2>All Requests</h2>
+        <ul>
+            <li>
+                <h3>Assignment Extension Request</h3>
+                <p><span class="title">Description:</span> I'd like to request a one-week extension for the Computer Research assignment (Assignment #3) due to unexpected health issues. </p>
+                <p><span class="title">Student:</span> King David</p>
+                <p><span class="title">Status:</span> <span class="approve">Approved</span></p>
+            </li>
+            <li>
+                <h3>Grade Review Request</h3>
+                <p><span class="title">Description:</span> Good day Sir, Kindly review my recent quiz assessment grading for a potential adjustment.</p>
+                <p><span class="title">Student:</span>King David</p>
+                <p><span class="title">Status:</span> <span class=" pend"> Pending</span></p>
+            </li>
+            <li>
+                <h3>Change of Contact Information</h3>
+                <p><span class="title">Description:</span> I've moved to a new address and need to update my contact information.</p>
+                <p><span class="title">Student:</span>King David</p>
+                <p><span class="title">Status:</span> <span class="approve">Approved</span></p>
+            </li>
+        </ul>
+    </section>
+    <br>
+    <section class="feedback">
+        <h2>All Feedback</h2>
+        <ul>
+            <li>
+                <h3>Assignment Extension Request</h3><br>
+                <p><span class="title">Feedback:</span> Hello David,
+                We've approved your request for a one-week extension on Assignment #3. The new deadline is set for you. Please ensure timely submission.</p>
+                <p><span class="title">Facilitator:</span> Mike</p>
+            </li>
+        </ul>
+    </section>
+    <br>
+    <section class="admin-tasks">
+        <h2>Administrative Tasks</h2>
+        <ul>
+            <li>
+                <h3>Task 1</h3>
+                <p><span class="title">Description:</span> Review department budget.</p> <br>
+                <textarea placeholder="Add your comments..."></textarea><br>
+                <button type="submit">Submit Comment</button>
+            </li>
+        </ul>
+    </section>
+</body>
+</html>

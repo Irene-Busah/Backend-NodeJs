@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <title>Sign Up</title>
+    <style>
+        body {
+            font-family: 'Karla', sans-serif;
+            text-align: start;
+            margin: 0;
+            padding: 0;
+            background-color: #f1f1f1;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        input, select {
+            font-family: 'Karla', sans-serif;
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+        }
+
+        button {
+            background-color: #333;
+            color: white;
+            outline: none;
+            padding: 12px;
+            border: none;
+            width: 100%;
+            border-radius: 4px;
+        }
+
+        /* Style the container for inputs */
+        .container {
+            background-color: #fff;
+            padding: 40px;
+            width: 40%;
+            margin: auto;
+            margin-top: 60px;
+            border-radius: 4px;
+        }
+
+        #password-tooltip {
+            display:none;
+            background: #f1f1f1;
+            color: #000;
+            position: relative;
+            padding: 20px;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        #password-tooltip p {
+            padding: 10px 35px;
+            font-size: 18px;
+        }
+
+        /* Add a green text color and a checkmark when the requirements are right */
+        .valid {
+            color: green;
+        }
+
+        .valid:before {
+            position: relative;
+            left: 0px;
+            content: "✔";
+        }
+
+        .invalid {
+            color: red;
+        }
+
+        .invalid:before {
+            position: relative;
+            left: 0px;
+            content: "✖";
+        }
+
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Sign Up</h1>
+        <p id="confirm-password-message" style="font-weight: 700;"></p>
+        <form action="/signup" method="post">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="role">Role</label>
+            <select id="role" name="role" required>
+                <option value="">Select your Role</option>
+                <option value="Student">Student</option>
+                <option value="Facilitator">Facilitator</option>
+                <option value="Team Lead">Team Lead</option>
+            </select><br><br>
+            <label for="password">Password</label>
+            <input type="password" id="password" name="password" required pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Must contain at least one number and one uppercase and lowercase letter, and at least 8 or more characters">
+            <label for="password-confirm">Confirm Password</label>
+            <input type="password" id="password-confirm" name="password-confirm" required>
+
+            
+            <div id="password-tooltip" class="password-tooltip">
+                <span id="length-tooltip" class="invalid">Minimum 8 characters</span>
+                <span id="uppercase-tooltip" class="invalid">At least one uppercase letter</span>
+                <span id="lowercase-tooltip" class="invalid">At least one lowercase letter</span>
+                <span id="digit-tooltip" class="invalid">At least one digit</span>
+                <span id="special-char-tooltip" class="invalid">At least one special character</span>
+            </div>
+            <p id="password-strength" style="font-weight: 700;"></p>
+            <button type="submit">Sign Up</button>
+            <br>
+            <p>Already have an account? <a href="/login">Login</a></p>
+        </form>
+    </div>
+
+    <script>
+        var myInput = document.getElementById("password");
+        var letter = document.getElementById("lowercase-tooltip");
+        var capital = document.getElementById("uppercase-tooltip");
+        var number = document.getElementById("digit-tooltip");
+        var special = document.getElementById("special-char-tooltip");
+        var length = document.getElementById("length-tooltip");
+        var strengthMessage = document.getElementById("password-strength");
+
+        myInput.onfocus = function() {
+            document.getElementById("password-tooltip").style.display = "block";
+        }
+
+        myInput.onblur = function() {
+            document.getElementById("password-tooltip").style.display = "none";
+        }
+
+        myInput.oninput = function() {
+            // Validate lowercase letters
+            var lowerCaseLetters = /[a-z]/g;
+            var lowercaseValid = myInput.value.match(lowerCaseLetters) ? true : false;
+            if (lowercaseValid) {
+                letter.classList.remove("invalid");
+                letter.classList.add("valid");
+            } else {
+                letter.classList.remove("valid");
+                letter.classList.add("invalid");
+            }
+
+            // Validate capital letters
+            var upperCaseLetters = /[A-Z]/g;
+            var uppercaseValid = myInput.value.match(upperCaseLetters) ? true : false;
+            if (uppercaseValid) {
+                capital.classList.remove("invalid");
+                capital.classList.add("valid");
+            } else {
+                capital.classList.remove("valid");
+                capital.classList.add("invalid");
+            }
+
+            // Validate numbers
+            var numbers = /[0-9]/g;
+            var numbersValid = myInput.value.match(numbers) ? true : false;
+            if (numbersValid) {
+                number.classList.remove("invalid");
+                number.classList.add("valid");
+            } else {
+                number.classList.remove("valid");
+                number.classList.add("invalid");
+            }
+
+            // Validate special characters
+            var specialCharacters = /[!@#$%^&*()_+{}\[\]:;<>,.?~\\/-]/g;
+            var specialValid = myInput.value.match(specialCharacters) ? true : false;
+            if (specialValid) {
+                special.classList.remove("invalid");
+                special.classList.add("valid");
+            } else {
+                special.classList.remove("valid");
+                special.classList.add("invalid");
+            }
+
+            // Validate length
+            var lengthValid = myInput.value.length >= 8;
+            if (lengthValid) {
+                length.classList.remove("invalid");
+                length.classList.add("valid");
+            } else {
+                length.classList.remove("valid");
+                length.classList.add("invalid");
+            }
+
+            // Calculate overall strength
+            var strength = lowercaseValid + uppercaseValid + numbersValid + specialValid + lengthValid;
+
+            // Update the password strength message based on the strength level
+            if (strength >= 8) {
+                strengthMessage.textContent = "Strong password";
+                strengthMessage.style.color = 'green';
+            } else if (strength >= 5 && strength < 8) {
+                strengthMessage.textContent = "Medium password";
+                strengthMessage.style.color = 'green';
+            } else {
+                strengthMessage.textContent = "Weak password";
+                strengthMessage.style.color = 'red';
+            }
+        }
+
+
+        const passwordInput = document.getElementById('password');
+        const confirmPasswordInput = document.getElementById('password-confirm');
+        const confirmPasswordMessage = document.getElementById('confirm-password-message');
+
+        confirmPasswordInput.addEventListener('input', function () {
+            const password = passwordInput.value;
+            const confirmPassword = confirmPasswordInput.value;
+
+            if (password === confirmPassword) {
+                confirmPasswordMessage.textContent = 'Passwords match';
+                confirmPasswordMessage.style.color = 'green';
+            } else {
+                confirmPasswordMessage.textContent = 'Passwords do not match';
+                confirmPasswordMessage.style.color = 'red';
+            }
+        });
+
+
+    </script>
+</body>
+</html>
