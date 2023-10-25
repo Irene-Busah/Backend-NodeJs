@@ -15,14 +15,25 @@ const PORT = 3000;
 // Middleware
 app.use(bodyParser.urlencoded({ extended: true }))
 
+let userAuthorized = false
+
+const passwordCheck = (req, res, next) => {
+    const password = req.body["password"]
+    if (password === 'ILoveProgramming') {
+        userAuthorized = true
+    }
+    next()
+}
+
+app.use(passwordCheck)
+
 app.get('/', (req, res) => {
     res.sendFile(__dirname + "/public/index.html")
 })
 
 app.post('/check', (req, res) => {
-    const data = req.body
-    const password = 'ILoveProgramming'
-    if (data.password === password) {
+
+    if (userAuthorized) {
         res.sendFile(__dirname + "/public/secret.html")
     } else {
         res.sendFile(__dirname + "/public/index.html")
