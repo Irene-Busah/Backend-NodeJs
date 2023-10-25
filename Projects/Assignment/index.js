@@ -187,7 +187,7 @@ app.post('/submit-request', (req, res) => {
 });
 
 
-mongoose.connect('MONGODB_LINK').then(() => {
+mongoose.connect('MONGO_DB').then(() => {
     console.log('Connected to the database');
     app.listen(PORT, () => {
         console.log('listening on port ' + PORT);
