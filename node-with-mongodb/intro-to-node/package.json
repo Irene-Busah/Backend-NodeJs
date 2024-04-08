@@ -1,0 +1,15 @@
+{
+  "name": "intro-to-node",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "This is the fundamentals for nodejs and mongodb course",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Irene Busah",
+  "license": "ISC",
+  "dependencies": {
+    "supervillains": "^3.1.0"
+  }
+}
