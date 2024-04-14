@@ -17,6 +17,16 @@ app.get("/", (req, res) => {
     res.sendFile(__dirname + "/index.html");
 })
 
+// External API isn't working
+app.post("/", (req, res) => {
+    const API_URL = "https://apiv2.bitcoinaverage.com/indices/global/ticker/BTCUSD";
+    request(API_URL, (error, response, body) => {
+        let data = JSON.parse(body);
+        let price = data.last;
+
+        res.send(`<h1>The price of Bitcoin is $${price}`)
+    })
+})
 
 
 
